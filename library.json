@@ -1,0 +1,23 @@
+{
+  "name": "LedControl",
+  "version": "1.0.6",
+  "description": "Arduino library for MAX7219 and MAX7221 LED display drivers",
+  "keywords": "display, led",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stringbean/LedControl.git"
+  },
+  "authors": [
+    {
+      "name": "Michael Stringer",
+      "url": "https://github.com/stringbean",
+      "maintainer": true
+    },
+    {
+      "name": "Eberhard Fahle",
+      "email": "e.fahle@wayoda.org"
+    }
+  ],
+  "frameworks": "arduino",
+  "platforms": "atmelavr,atmelsam,teensy"
+}
