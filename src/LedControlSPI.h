@@ -24,8 +24,8 @@
  *    OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LedControlSoft_h
-#define LedControlSoft_h
+#ifndef LedControlSPI_h
+#define LedControlSPI_h
 
 #include "LedControl.h"
 
@@ -37,14 +37,10 @@
 
 #include "LedData.h"
 
-class LedControlSoft : public LedControl {
+class LedControlSPI : public LedControl {
     private:
         /* The array for shifting the data to the devices */
         byte spidata[16];
-        /* Data is shifted out of this pin*/
-        int SPI_MOSI;
-        /* The clock is signaled on this pin */
-        int SPI_CLK;
         /* This one is driven LOW for chip selectzion */
         int SPI_CS;
 
@@ -59,7 +55,7 @@ class LedControlSoft : public LedControl {
          * csPin		pin for selecting the device
          * numDevices	maximum number of devices that can be controled
          */
-        LedControlSoft(int dataPin, int clkPin, int csPin, int numDevices=1);
+        LedControlSPI(int csPin, int numDevices=1);
 };
 
-#endif	//LedControlSoft.h
+#endif	//LedControlSPI.h
