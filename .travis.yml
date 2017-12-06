@@ -1,6 +1,10 @@
+dist: trusty
+sudo: false
+
 language: python
 
 cache:
+  pip: true
   directories:
   - "~/.platformio"
 
