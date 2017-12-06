@@ -12,13 +12,19 @@ install:
 - pip install -U platformio
 
 env:
+# atmel avr
 - BOARD=leonardo
 - BOARD=micro
 - BOARD=megaatmega2560
 - BOARD=nanoatmega168
 - BOARD=uno
+# teensy
 - BOARD=teensy20
 - BOARD=teensy36
+# esp8266
+- BOARD=esp_wroom_02
+- BOARD=esp12e
+- BOARD=huzzah
 
 script:
 - set -eo pipefail;
