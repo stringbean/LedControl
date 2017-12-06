@@ -27,6 +27,22 @@
 #ifndef LedControl_h
 #define LedControl_h
 
+//the opcodes for the MAX7221 and MAX7219
+#define OP_NOOP   0
+#define OP_DIGIT0 1
+#define OP_DIGIT1 2
+#define OP_DIGIT2 3
+#define OP_DIGIT3 4
+#define OP_DIGIT4 5
+#define OP_DIGIT5 6
+#define OP_DIGIT6 7
+#define OP_DIGIT7 8
+#define OP_DECODEMODE  9
+#define OP_INTENSITY   10
+#define OP_SCANLIMIT   11
+#define OP_SHUTDOWN    12
+#define OP_DISPLAYTEST 15
+
 #if (ARDUINO >= 100)
 #include <Arduino.h>
 #else
@@ -36,34 +52,16 @@
 #include "LedData.h"
 
 class LedControl {
-    private :
-        /* The array for shifting the data to the devices */
-        byte spidata[16];
+    protected:
         /* Send out a single command to the device */
-        void spiTransfer(int addr, byte opcode, byte data);
+        virtual void spiTransfer(int addr, byte opcode, byte data) = 0;
 
         /* We keep track of the led-status for all 8 devices in this array */
         byte status[64];
-        /* Data is shifted out of this pin*/
-        int SPI_MOSI;
-        /* The clock is signaled on this pin */
-        int SPI_CLK;
-        /* This one is driven LOW for chip selectzion */
-        int SPI_CS;
         /* The maximum number of devices we use */
         int maxDevices;
 
     public:
-        /*
-         * Create a new controler
-         * Params :
-         * dataPin		pin on the Arduino where data gets shifted out
-         * clockPin		pin for the clock
-         * csPin		pin for selecting the device
-         * numDevices	maximum number of devices that can be controled
-         */
-        LedControl(int dataPin, int clkPin, int csPin, int numDevices=1);
-
         /*
          * Gets the number of devices attached to this LedControl.
          * Returns :
